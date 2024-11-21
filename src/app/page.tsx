@@ -1,101 +1,189 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import ContractAddress from "./components/ContractAddress";
 
-export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+const Hero = () => {
+	const [isLastFrame, setIsLastFrame] = useState(false);
+	const [text, setText] = useState("");
+	const texts = ["CHILL GUY", "EVOLVES TO", "CHILL GUY AI"]; // No change needed for texts
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
-}
+	useEffect(() => {
+		let currentIndex = 0;
+		let currentText = texts[currentIndex];
+		let charIndex = 0;
+		let typingForward = true;
+
+		const typeWriterEffect = () => {
+			setIsLastFrame(false);
+			if (typingForward) {
+				setText(currentText.slice(0, charIndex + 1));
+				charIndex++;
+				if (charIndex === currentText.length) {
+					typingForward = false;
+					setTimeout(typeWriterEffect, currentIndex == 2 ? 5000 : 1500); // Pause at the end
+					setIsLastFrame(currentIndex == 2 && charIndex == currentText.length);
+					return;
+				}
+			} else {
+				setText(currentText.slice(0, charIndex - 1));
+				charIndex--;
+				if (charIndex === 0) {
+					typingForward = true;
+					currentIndex = (currentIndex + 1) % texts.length;
+					currentText = texts[currentIndex];
+				}
+			}
+			setTimeout(typeWriterEffect, typingForward ? 80 : 50);
+		};
+
+		typeWriterEffect();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []); // Ensure no dependency errors
+
+	return (
+		<div className="flex flex-col min-h-screen bg-gray-800 text-white">
+			{/* Top Bar */}
+			<header className="w-full h-16 bg-gray-900 flex items-center px-6">
+				{/*<Image
+					src="/path-to-twitter-logo.png"
+					width={50}
+					height={50}
+					alt="Logo"
+					className="h-10"
+				/>*/}
+				<ContractAddress></ContractAddress>
+			</header>
+
+			{/* Hero Section */}
+			<div className="flex-1 flex flex-col items-center justify-center relative">
+				{/* Background Image */}
+				<div className="absolute inset-0 opacity-20">
+					<div className="w-full h-full bg-cover bg-center bg-hero bg-no-repeat"></div>
+				</div>
+
+				{/* Hero Content */}
+				<div className="relative flex items-center justify-center min-h-[64px] mb-10">
+					<h1
+						className={`text-4xl md:text-6xl font-black font-orbitron text-white ${
+							isLastFrame && "animate-pulse"
+						}`}
+					>
+						{text}
+					</h1>
+					{/* Invisible Placeholder to maintain height */}
+					<h1 className="absolute opacity-0 text-4xl md:text-6xl font-bold">
+						CHILL GUY&#39;S EVOLUTION {/* Escaped apostrophe */}
+					</h1>
+				</div>
+				<div className="relative z-10 flex flex-col items-center text-center space-y-8">
+					{/* Typewriter Effect Text */}
+
+					<div className="w-full flex flex-col justify-center items-center">
+						<div className="text-xl mb-4 font-semibold tracking-widest">
+							<h5 className="text-white">AI POWERED SOCIAL NETWORKS</h5>
+						</div>
+						<div className="flex justify-center items-center flex-wrap w-full space-x-10 ">
+							<Link href="https://x.com/_chillguyai" target="_blank">
+								<div className="flex flex-col justify-center items-center">
+									<div className="mb-2">
+										<Image
+											src="/socials/x_logo.png"
+											alt="x"
+											width={50}
+											height={50}
+											className="hover:scale-110 transition-transform"
+										/>
+									</div>
+									<div className="uppercase text-sm">x.com</div>
+								</div>
+							</Link>
+
+							<Link href="https://x.com/_chillguyai" target="_blank">
+								<div className="flex flex-col justify-center items-center  opacity-50">
+									<div className="mb-2">
+										<Image
+											src="/socials/telegram_logo.png"
+											alt="telegram logo"
+											width={40}
+											height={40}
+											className="hover:scale-110 transition-transform"
+										/>
+									</div>
+									<div className="uppercase text-sm">Telegram</div>
+								</div>
+							</Link>
+
+							<Link href="https://x.com/_chillguyai" target="_blank">
+								<div className="flex flex-col justify-center items-center  opacity-50">
+									<div className="mb-2">
+										<Image
+											src="/socials/tik_tok_logo.png"
+											alt="TikTok"
+											width={40}
+											height={40}
+											className="hover:scale-110 transition-transform"
+										/>
+									</div>
+									<div className="uppercase text-sm">coming...</div>
+								</div>
+							</Link>
+						</div>
+						<div className="mt-12">
+							<div className="tracking-widest text-lg uppercase font-semibold mb-4">
+								<h5 className="text-white">Also check us on</h5>
+							</div>
+							<div className="flex justify-center items-center flex-wrap w-full space-x-10 ">
+								<Link
+									href="https://dexscreener.com/solana/714ucludvuhmpami6nkvjjacpytcqkppvd2sg5dn8nw3"
+									target="_blank"
+								>
+									<div className="flex flex-col justify-center items-center">
+										<div className="mb-2">
+											<Image
+												src="/socials/dexscreener_logo.png"
+												alt="Dexscreener"
+												width={40}
+												height={40}
+												className="hover:scale-110 transition-transform"
+											/>
+										</div>
+										<div className="uppercase text-sm">dexscreener</div>
+									</div>
+								</Link>
+
+								<Link
+									href="https://birdeye.so/token/F9CJvVVYPNQTq53RJA62Gk2VUMtXAdMXQy318xipCtej?chain=solana"
+									target="_blank"
+								>
+									<div className="flex flex-col justify-center items-center">
+										<div className="mb-2">
+											<Image
+												src="/socials/birdeye_logo.png"
+												alt="Birdeye"
+												width={40}
+												height={40}
+												className="hover:scale-110 transition-transform"
+											/>
+										</div>
+										<div className="uppercase text-sm">birdeye</div>
+									</div>
+								</Link>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			{/* Footer */}
+			<footer className="py-6 bg-gray-900 text-center tracking-wide">
+				<p className="text-sm font-orbitron text-white">
+					THE CHILLEST AI OUT THERE
+				</p>
+			</footer>
+		</div>
+	);
+};
+
+export default Hero;
