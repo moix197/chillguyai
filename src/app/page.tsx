@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import ContractAddress from "./components/ContractAddress";
+import CircuitAnim from "./components/CircuitAnim";
 
 const Hero = () => {
 	const [isLastFrame, setIsLastFrame] = useState(false);
@@ -44,23 +45,21 @@ const Hero = () => {
 	}, []); // Ensure no dependency errors
 
 	return (
-		<div className="flex flex-col min-h-screen bg-gray-800 text-white">
+		<div className=" flex flex-col min-h-screen bg-gray-900 text-white">
 			{/* Top Bar */}
-			<header className="w-full h-16 bg-gray-900 flex items-center px-6">
-				{/*<Image
-					src="/path-to-twitter-logo.png"
-					width={50}
-					height={50}
-					alt="Logo"
-					className="h-10"
-				/>*/}
-				<ContractAddress></ContractAddress>
+			<header className="flex justify-center items-center z-30 relative w-full h-16 flex items-center px-6">
+				<div className="flex justify-center items-center bg-gray-900 py-0 h-full px-8">
+					<ContractAddress></ContractAddress>
+				</div>
 			</header>
 
 			{/* Hero Section */}
-			<div className="flex-1 flex flex-col items-center justify-center relative">
+			<div className="z-20 absolute top-0 left-0 w-full h-full opacity-100 h-100vh flex justify-center items center overflow-hidden opacity-80">
+				<CircuitAnim></CircuitAnim>
+			</div>
+			<div className="z-30 relative bg-gray-900 flex-1 flex flex-col items-center justify-center relative">
 				{/* Background Image */}
-				<div className="absolute inset-0 opacity-20">
+				<div className="absolute inset-0 opacity-50">
 					<div className="w-full h-full bg-cover bg-center bg-hero bg-no-repeat"></div>
 				</div>
 
@@ -105,6 +104,21 @@ const Hero = () => {
 								<div className="flex flex-col justify-center items-center  opacity-50">
 									<div className="mb-2">
 										<Image
+											src="/socials/discord_logo.png"
+											alt="discord logo"
+											width={40}
+											height={40}
+											className="hover:scale-110 transition-transform"
+										/>
+									</div>
+									<div className="uppercase text-sm">coming...</div>
+								</div>
+							</Link>
+
+							<Link href="https://x.com/_chillguyai" target="_blank">
+								<div className="flex flex-col justify-center items-center  opacity-50">
+									<div className="mb-2">
+										<Image
 											src="/socials/telegram_logo.png"
 											alt="telegram logo"
 											width={40}
@@ -121,7 +135,7 @@ const Hero = () => {
 									<div className="mb-2">
 										<Image
 											src="/socials/tik_tok_logo.png"
-											alt="TikTok"
+											alt="TikTok logo"
 											width={40}
 											height={40}
 											className="hover:scale-110 transition-transform"
@@ -144,7 +158,7 @@ const Hero = () => {
 										<div className="mb-2">
 											<Image
 												src="/socials/dexscreener_logo.png"
-												alt="Dexscreener"
+												alt="Dexscreener logo"
 												width={40}
 												height={40}
 												className="hover:scale-110 transition-transform"
@@ -162,7 +176,7 @@ const Hero = () => {
 										<div className="mb-2">
 											<Image
 												src="/socials/birdeye_logo.png"
-												alt="Birdeye"
+												alt="Birdeye logo"
 												width={40}
 												height={40}
 												className="hover:scale-110 transition-transform"
@@ -177,8 +191,9 @@ const Hero = () => {
 				</div>
 			</div>
 			{/* Footer */}
-			<footer className="py-6 bg-gray-900 text-center tracking-wide">
-				<p className="text-sm font-orbitron text-white">
+
+			<footer className="flex justify-center items-center z-30 py-6 text-center tracking-wide h-16">
+				<p className="flex justify-center items-center bg-gray-900 py-0 px-8 h-16">
 					THE CHILLEST AI OUT THERE
 				</p>
 			</footer>

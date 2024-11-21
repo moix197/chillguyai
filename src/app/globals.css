@@ -23,3 +23,15 @@ body {
 .font-orbitron {
   font-family: var(--font-orbitron);
 }
+
+.st0 {
+  fill: none;
+  stroke: #10efff;
+  stroke-miterlimit: 10;
+}
+.st1 {
+  fill: none;
+  stroke: #10efff;
+  stroke-linecap: round;
+  stroke-miterlimit: 10;
+}
