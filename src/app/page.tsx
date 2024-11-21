@@ -112,7 +112,7 @@ const Hero = () => {
 											className="hover:scale-110 transition-transform"
 										/>
 									</div>
-									<div className="uppercase text-sm">Telegram</div>
+									<div className="uppercase text-sm">coming...</div>
 								</div>
 							</Link>
 
