@@ -47,7 +47,7 @@ const Hero = () => {
 	return (
 		<div className=" flex flex-col min-h-screen bg-gray-900 text-white">
 			{/* Top Bar */}
-			<header className="flex justify-center items-center z-30 relative w-full h-16 flex items-center px-6">
+			<header className="flex justify-center items-center z-30 relative w-full h-16 flex items-center px-6 ">
 				<div className="flex justify-center items-center bg-gray-900 py-0 h-full px-8">
 					<ContractAddress></ContractAddress>
 				</div>
@@ -60,13 +60,13 @@ const Hero = () => {
 			<div className="z-30 relative bg-gray-900 flex-1 flex flex-col items-center justify-center relative">
 				{/* Background Image */}
 				<div className="absolute inset-0 opacity-50">
-					<div className="w-full h-full bg-cover bg-center bg-hero bg-no-repeat"></div>
+					<div className="w-full h-full bg-cover bg-hero bg-no-repeat bg-[80%] md:bg-center"></div>
 				</div>
 
 				{/* Hero Content */}
 				<div className="relative flex items-center justify-center min-h-[64px] mb-10">
 					<h1
-						className={`text-4xl md:text-6xl font-black font-orbitron text-white ${
+						className={`text-4xl md:text-6xl font-black font-orbitron text-white text-shadow ${
 							isLastFrame && "animate-pulse"
 						}`}
 					>
@@ -82,7 +82,9 @@ const Hero = () => {
 
 					<div className="w-full flex flex-col justify-center items-center">
 						<div className="text-xl mb-4 font-semibold tracking-widest">
-							<h5 className="text-white">AI POWERED SOCIAL NETWORKS</h5>
+							<h5 className="text-white text-shadow">
+								AI POWERED SOCIAL NETWORKS
+							</h5>
 						</div>
 						<div className="flex justify-center items-center flex-wrap w-full space-x-10 ">
 							<Link href="https://x.com/_chillguyai" target="_blank">
@@ -96,7 +98,9 @@ const Hero = () => {
 											className="hover:scale-110 transition-transform"
 										/>
 									</div>
-									<div className="uppercase text-sm">x.com</div>
+									<div className="uppercase text-sm font-semibold text-shadow">
+										x.com
+									</div>
 								</div>
 							</Link>
 
@@ -111,7 +115,9 @@ const Hero = () => {
 											className="hover:scale-110 transition-transform"
 										/>
 									</div>
-									<div className="uppercase text-sm">coming...</div>
+									<div className="uppercase text-sm font-semibold text-shadow">
+										coming...
+									</div>
 								</div>
 							</Link>
 
@@ -126,7 +132,9 @@ const Hero = () => {
 											className="hover:scale-110 transition-transform"
 										/>
 									</div>
-									<div className="uppercase text-sm">coming...</div>
+									<div className="uppercase text-sm font-semibold text-shadow">
+										coming...
+									</div>
 								</div>
 							</Link>
 
@@ -141,13 +149,15 @@ const Hero = () => {
 											className="hover:scale-110 transition-transform"
 										/>
 									</div>
-									<div className="uppercase text-sm">coming...</div>
+									<div className="uppercase text-sm font-semibold text-shadow">
+										coming...
+									</div>
 								</div>
 							</Link>
 						</div>
-						<div className="mt-12">
+						<div className="mt-8">
 							<div className="tracking-widest text-lg uppercase font-semibold mb-4">
-								<h5 className="text-white">Also check us on</h5>
+								<h5 className="text-white">Also check us out on</h5>
 							</div>
 							<div className="flex justify-center items-center flex-wrap w-full space-x-10 ">
 								<Link
@@ -164,7 +174,9 @@ const Hero = () => {
 												className="hover:scale-110 transition-transform"
 											/>
 										</div>
-										<div className="uppercase text-sm">dexscreener</div>
+										<div className="uppercase text-sm font-semibold text-shadow">
+											dexscreener
+										</div>
 									</div>
 								</Link>
 
@@ -182,7 +194,9 @@ const Hero = () => {
 												className="hover:scale-110 transition-transform"
 											/>
 										</div>
-										<div className="uppercase text-sm">birdeye</div>
+										<div className="uppercase text-sm font-semibold text-shadow">
+											birdeye
+										</div>
 									</div>
 								</Link>
 							</div>
@@ -193,7 +207,7 @@ const Hero = () => {
 			{/* Footer */}
 
 			<footer className="flex justify-center items-center z-30 py-6 text-center tracking-wide h-16">
-				<p className="flex justify-center items-center bg-gray-900 py-0 px-8 h-16">
+				<p className="flex justify-center items-center bg-gray-900 py-0 px-8 h-16 ">
 					THE CHILLEST AI OUT THERE
 				</p>
 			</footer>
